@@ -1,6 +1,7 @@
 
 #ifndef INC_1517_STRING__H
 #define INC_1517_STRING__H
+char _stringBuffer[MAX_STRING_SIZE + 1];
 typedef struct str_ {
     int begin;
     int end;
