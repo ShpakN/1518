@@ -143,3 +143,22 @@ void removeNonLetters(char *s) {
     char *destination = copyIf(s, endSource, s, isgraph);
     *destination = '\0';
 }
+void removeAdjacentEqualLetters(char *s) {
+    char *endSource = getEndOfString(s);
+    char **destination = (char **) copyIf(s, endSource, s, isgraph);
+    *destination = s;
+}
+void removeExtraSpaces(char *s) {
+    for (int j = 0; j < strlen(s); j++)
+    {
+        if (s[j] == ' ')
+        {
+            while (s[j + 1] == ' ')
+                memmove(&s[j + 1], &s[j + 2], strlen(s) - j);
+        }
+    }
+    if (s[0] == ' ')
+        memmove(s, s + 1, strlen(s));
+    if (s[strlen(s) - 2] == ' ')
+        s[strlen(s) - 2] = '\n'; 
+}
