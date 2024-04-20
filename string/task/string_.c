@@ -243,7 +243,7 @@ void stringBuffer(char *s) {
     }
 }
 
-void replace(char *source, char *w1, char *w2) {
+char replace(char *source, char *w1, char *w2) {
     size_t w1Size = strlen_(w1);
     size_t w2Size = strlen_(w2);
 
@@ -283,4 +283,12 @@ void getBagOfWords(BagOfWords *bag, char *s) {
     char *_bag;
     const char *_bag2;
     copyIfReverse(_bag, _bag2, (char *) bag, (int (*)(int)) s);
+}
+int numberOfPalindrome(char *source, char w1, char w2){
+    int k = 0;
+    char q = replace(source, &w1,&w2);
+    if (w1 == q || w2 == q){
+        k++;
+    }
+    return k;
 }
