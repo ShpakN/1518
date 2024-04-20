@@ -284,11 +284,30 @@ void getBagOfWords(BagOfWords *bag, char *s) {
     const char *_bag2;
     copyIfReverse(_bag, _bag2, (char *) bag, (int (*)(int)) s);
 }
-int numberOfPalindrome(char *source, char w1, char w2){
+
+int numberOfPalindrome(char *source, char w1, char w2) {
     int k = 0;
-    char q = replace(source, &w1,&w2);
-    if (w1 == q || w2 == q){
+    char q = replace(source, &w1, &w2);
+    if (w1 == q || w2 == q) {
         k++;
     }
     return k;
+}
+
+int alternatingOfPalindrome(char s1, char s2
+) {
+    WordDescriptor word1, word2;
+    bool isW1Found, isW2Found;
+    char *beginSearch1 = &s1, *beginSearch2 = &s2;
+    while ((isW1Found = getWord(beginSearch1, &word1)),
+            (isW2Found = getWord(beginSearch2, &word2)),
+            isW1Found || isW2Found) {
+        if (beginSearch1 > beginSearch2) {
+            int k = beginSearch1 - beginSearch2;
+            return k;
+        } else {
+            int l = beginSearch2 - beginSearch1;
+            return l;
+        }
+    }
 }
