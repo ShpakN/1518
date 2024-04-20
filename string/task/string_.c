@@ -148,9 +148,6 @@ void removeNonLetters(char *s) {
     *destination = '\0';
 }
 
-char *getEndOfString(char *s) {
-    return NULL;
-}
 
 void removeAdjacentEqualLetters(char *s) {
     char *endSource = (char *) getEndOfString(s);
@@ -268,10 +265,22 @@ void replace(char *source, char *w1, char *w2) {
 
 int areWordsEqual(WordDescriptor w1, WordDescriptor w2) {
     while (w1 != '/0' && w2 != '/0') {
-        if (w1 < w2){
+        if (w1 < w2) {
             return 1;
-        } else{
+        } else {
             return 0;
         }
     }
+}
+
+
+typedef struct BagOfWords {
+    WordDescriptor words[MAX_N_WORDS_IN_STRING];
+    size_t size;
+} BagOfWords;
+
+void getBagOfWords(BagOfWords *bag, char *s) {
+    char *_bag;
+    const char *_bag2;
+    copyIfReverse(_bag, _bag2, (char *) bag, (int (*)(int)) s);
 }
