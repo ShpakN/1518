@@ -140,10 +140,16 @@ char *copyIfReverse(char *rbeginSource, const char *rendSource, char *beginDesti
     }
 }
 
+char *getEndOfString(char *s);
+
 void removeNonLetters(char *s) {
     char *endSource = getEndOfString(s);
     char *destination = copyIf(s, endSource, s, isgraph);
     *destination = '\0';
+}
+
+char *getEndOfString(char *s) {
+    return NULL;
 }
 
 void removeAdjacentEqualLetters(char *s) {
@@ -231,4 +237,27 @@ bool getWordReverse(char *rbegin, char *rend, WordDescriptor *word) {
         return 0;
     word->end = findSpace(word->begin);
     return 1;
+}
+
+void stringBuffer(char *s){
+    for (; *s; ++s){
+        if (isdigit(*s))  *s = ' ';
+    }
+}
+
+void replace(char *source, char *w1, char *w2) {
+    size_t w1Size = strlen_(w1);
+    size_t w2Size = strlen_(w2);
+    char *word1 = {w1, w1 + w1Size};
+    const char *word2 = {w2, w2 + w2Size};
+    char *readPtr, *recPtr;
+    if (w1Size >= w2Size) {
+        readPtr = source;
+        recPtr = source;
+    } else {
+        copy(source, getEndOfString(source), _stringBuffer);
+        readPtr = _stringBuffer;
+        recPtr = source;
+    }
+    copyIf(word1, word2, source, isalpha);
 }
