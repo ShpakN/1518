@@ -233,24 +233,27 @@ bool getWordReverse(char *rbegin, char *rend, WordDescriptor *word) {
     while (*word->begin != *word->end) {
         *word->begin++;
     }
+
     if (*word->begin == '\0')
         return 0;
     word->end = findSpace(word->begin);
     return 1;
 }
 
-void stringBuffer(char *s){
-    for (; *s; ++s){
-        if (isdigit(*s))  *s = ' ';
+void stringBuffer(char *s) {
+    for (; *s; ++s) {
+        if (isdigit(*s)) *s = ' ';
     }
 }
 
 void replace(char *source, char *w1, char *w2) {
     size_t w1Size = strlen_(w1);
     size_t w2Size = strlen_(w2);
+
     char *word1 = {w1, w1 + w1Size};
     const char *word2 = {w2, w2 + w2Size};
     char *readPtr, *recPtr;
+
     if (w1Size >= w2Size) {
         readPtr = source;
         recPtr = source;
@@ -259,5 +262,16 @@ void replace(char *source, char *w1, char *w2) {
         readPtr = _stringBuffer;
         recPtr = source;
     }
+
     copyIf(word1, word2, source, isalpha);
+}
+
+int areWordsEqual(WordDescriptor w1, WordDescriptor w2) {
+    while (w1 != '/0' && w2 != '/0') {
+        if (w1 < w2){
+            return 1;
+        } else{
+            return 0;
+        }
+    }
 }
