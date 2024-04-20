@@ -265,6 +265,7 @@ char replace(char *source, char *w1, char *w2) {
 
 int areWordsEqual(WordDescriptor w1, WordDescriptor w2) {
     while (w1 != '/0' && w2 != '/0') {
+
         if (w1 < w2) {
             return 1;
         } else {
@@ -282,15 +283,19 @@ typedef struct BagOfWords {
 void getBagOfWords(BagOfWords *bag, char *s) {
     char *_bag;
     const char *_bag2;
+
     copyIfReverse(_bag, _bag2, (char *) bag, (int (*)(int)) s);
 }
 
 int numberOfPalindrome(char *source, char w1, char w2) {
     int k = 0;
+
     char q = replace(source, &w1, &w2);
+
     if (w1 == q || w2 == q) {
         k++;
     }
+
     return k;
 }
 
@@ -299,15 +304,49 @@ int alternatingOfPalindrome(char s1, char s2
     WordDescriptor word1, word2;
     bool isW1Found, isW2Found;
     char *beginSearch1 = &s1, *beginSearch2 = &s2;
+
     while ((isW1Found = getWord(beginSearch1, &word1)),
             (isW2Found = getWord(beginSearch2, &word2)),
             isW1Found || isW2Found) {
+
         if (beginSearch1 > beginSearch2) {
             int k = beginSearch1 - beginSearch2;
+
             return k;
         } else {
             int l = beginSearch2 - beginSearch1;
+
             return l;
         }
     }
+}
+
+void reverseWord(char *begin, char *end) {
+    for (--end; begin < end; ++begin, --end) {
+        char tmp = *begin;
+        *begin = *end;
+        *end = tmp;
+    }
+}
+
+int is_separator(char c) {
+    return c == ' ';
+}
+
+void reverseWords(char *s) {
+    char *word = s;
+
+    do {
+        for (; is_separator(*word); ++word);
+        if (*word == '\0')
+            break;
+
+        char *word_end = word;
+        for (++word_end; *word_end != '\0' && !is_separator(*word_end); ++word_end);
+
+        reverseWord(word, word_end);
+        word = word_end;
+    } while (1);
+
+    reverseWord(s, word);
 }
