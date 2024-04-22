@@ -373,7 +373,20 @@ int alternatingOfLastWord(BagOfWords s1, BagOfWords s2
             isW1Found || isW2Found) {
 
         if (beginSearch1 == beginSearch2) {
-            int k = beginSearch1 - beginSearch2;
+            char k = *beginSearch1;
+        }
+    }
+}
+
+
+char *printSimilarWord(char *s) {
+    size_t l = strlen(s);
+
+    for (size_t i = 0; i < l; i++) {
+        if (s[i] == s[i + 1]) {
+            return s;
+        } else {
+            return 0;
         }
     }
 }
