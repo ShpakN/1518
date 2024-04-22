@@ -350,3 +350,14 @@ void reverseWords(char *s) {
 
     reverseWord(s, word);
 }
+
+char * printWordBeforeFirstWordWithA(char *s) {
+    size_t l = strlen(s);
+    for (size_t i = 0; i < l; i++) {
+        if (s[i] == 'a') {
+            return s;
+        } else{
+            return 0;
+        }
+    }
+}
