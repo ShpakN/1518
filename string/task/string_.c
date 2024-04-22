@@ -299,7 +299,7 @@ int numberOfPalindrome(char *source, char w1, char w2) {
     return k;
 }
 
-int alternatingOfPalindrome(char s1, char s2
+int alternatingOfPalindrome(BagOfWords s1, BagOfWords s2
 ) {
     WordDescriptor word1, word2;
     bool isW1Found, isW2Found;
@@ -351,13 +351,29 @@ void reverseWords(char *s) {
     reverseWord(s, word);
 }
 
-char * printWordBeforeFirstWordWithA(char *s) {
+char *printWordBeforeFirstWordWithA(char *s) {
     size_t l = strlen(s);
     for (size_t i = 0; i < l; i++) {
         if (s[i] == 'a') {
             return s;
-        } else{
+        } else {
             return 0;
+        }
+    }
+}
+
+int alternatingOfLastWord(BagOfWords s1, BagOfWords s2
+) {
+    WordDescriptor word1, word2;
+    bool isW1Found, isW2Found;
+    char *beginSearch1 = (char *) &s1, *beginSearch2 = (char *) &s2;
+
+    while ((isW1Found = getWord(beginSearch1, &word1)),
+            (isW2Found = getWord(beginSearch2, &word2)),
+            isW1Found || isW2Found) {
+
+        if (beginSearch1 == beginSearch2) {
+            int k = beginSearch1 - beginSearch2;
         }
     }
 }
