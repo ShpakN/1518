@@ -465,23 +465,23 @@ void deleteDuplicateString(char *s) {
 
 }
 
-char *SmallerNumberOfargerNumberOfWords(char *s1, char *s2) {
+char *SmallerNumberOfargerNumberOfWords(char *n1, char *n2) {
     int i = 0;
-    char *s3;
+    char *n3;
     int j = 0;
 
-    size_t l1 = strlen(s1);
-    size_t l2 = strlen(s2);
+    size_t l1 = strlen(n1);
+    size_t l2 = strlen(n2);
 
-    while (i < strlen(s1)) {
-        strcpy(s1, "");
+    while (i < strlen(n1)) {
+        strcpy(n1, "");
 
-        while (s1[i] != ' ' && i < strlen(s1)) {
-            strncat(s1, &s1[i], 1);
+        while (n1[i] != ' ' && i < strlen(n1)) {
+            strncat(n1, &n1[i], 1);
             i++;
         }
 
-        strcpy((char *) s3[j], s1);
+        strcpy((char *) n3[j], n1);
         j++;
         i++;
     }
@@ -489,6 +489,6 @@ char *SmallerNumberOfargerNumberOfWords(char *s1, char *s2) {
     int k = j - 1;
 
     for (i = k; i >= l2 - l1; i--) {
-        printf("%c ", s3[i]);
+        printf("%c ", n3[i]);
     }
 }
