@@ -433,3 +433,34 @@ char *printPrecedingFirstWord(char *s1, char *s2) {
         }
     }
 }
+
+void deleteSubstring(char *str, int start, int end) {
+    int len = strlen(str);
+    if (end >= len) {
+        str[start] = '\0';
+    } else {
+        memmove(&str[start], &str[end], len - end + 1);
+    }
+}
+
+void deleteDuplicateString(char *s) {
+    bool k = false;
+    char letters[256] = {0};
+    int l = strlen(s);
+    for (int i = 0; i < l; i++) {
+        if (i == 0 || s[i] == ' ') {
+            if (k) {
+                deleteSubstring(s, i + 1, l);
+            }
+            l = i;
+            memset(letters, 0, sizeof(letters));
+            k = false;
+        } else {
+            if (letters[(unsigned char) s[i]] == 1) {
+                k = true;
+            }
+            letters[(unsigned char) s[i]] = 1;
+        }
+    }
+
+}
