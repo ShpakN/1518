@@ -379,19 +379,19 @@ int alternatingOfLastWord(BagOfWords s1, BagOfWords s2
 }
 
 
-int *printSimilarWord(char *s) {
+char *printSimilarWord(char *s) {
     size_t l = strlen(s);
 
     for (size_t i = 0; i < l; i++) {
         if (s[i] == s[i + 1]) {
-            return (int *) 1;
+            return (char *) 1;
         } else {
             return 0;
         }
     }
 }
 
-int *printSimilarSetWord(char *s) {
+char *printSimilarSetWord(char *s) {
     char k = *copy(s, s, s);
     size_t l = strlen(&k);
 
@@ -399,11 +399,37 @@ int *printSimilarSetWord(char *s) {
         if (k[i] > k[i + 1]) {
             k[i + 1] = k[i];
         }
-        
+
         if (k[i] == k[i + 1]) {
-            return (int *) 1;
+            return (char *) 1;
         } else {
             return 0;
+        }
+    }
+}
+
+char *printDiverseLastWord(char *s) {
+    size_t l = strlen(s);
+
+    for (size_t i = 0; i < l; i++) {
+        s[i] = s[i - 1];
+        if (s[i] != s[i + 1]) {
+            return (char *) s;
+        }
+    }
+}
+
+char *printPrecedingFirstWord(char *s1, char *s2) {
+    size_t l1 = strlen(s1);
+    size_t l2 = strlen(s2);
+
+    for (size_t i = 0; i < l1; i++) {
+        for (size_t j = 0; i < l2; i++) {
+            if (s1[i] == s2[j]) {
+                char w = s1[i - 1];
+
+                return (char *) w;
+            }
         }
     }
 }
