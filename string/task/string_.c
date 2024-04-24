@@ -264,7 +264,7 @@ char replace(char *source, char *w1, char *w2) {
 }
 
 int areWordsEqual(WordDescriptor w1, WordDescriptor w2) {
-    while (w1 != '/0' && w2 != '/0') {
+    while (w1 != "\0" && w2 != "\0") {
 
         if (w1 < w2) {
             return 1;
@@ -379,19 +379,19 @@ int alternatingOfLastWord(BagOfWords s1, BagOfWords s2
 }
 
 
-char *printSimilarWord(char *s) {
+int *IsSimilarWord(char *s) {
     size_t l = strlen(s);
 
     for (size_t i = 0; i < l; i++) {
         if (s[i] == s[i + 1]) {
-            return (char *) 1;
+            return (int *) 1;
         } else {
             return 0;
         }
     }
 }
 
-char *printSimilarSetWord(char *s) {
+int *IsSimilarSetWord(char *s) {
     char k = *copy(s, s, s);
     size_t l = strlen(&k);
 
@@ -401,7 +401,7 @@ char *printSimilarSetWord(char *s) {
         }
 
         if (k[i] == k[i + 1]) {
-            return (char *) 1;
+            return (int *) 1;
         } else {
             return 0;
         }
@@ -490,5 +490,18 @@ char *SmallerNumberOfargerNumberOfWords(char *n1, char *n2) {
 
     for (i = k; i >= l2 - l1; i--) {
         printf("%c ", n3[i]);
+    }
+}
+
+
+int IsStringeachLetterGivenWord(char *s, char w) {
+    size_t l = strlen(s);
+    int k = 0;
+    for (int i = 0; i < l; i++) {
+        if (s[i] == w) {
+            int k = 1;
+        } else {
+            int k = 0;
+        }
     }
 }
