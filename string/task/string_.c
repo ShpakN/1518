@@ -168,12 +168,7 @@ void removeExtraSpaces(char *s) {
         s[strlen(s) - 2] = '\n';
 }
 
-typedef struct WordDescriptor {
-    char *begin; // позиция начала слова
-    char *end; // позиция первого символа, после последнего символа слова
-} WordDescriptor;
 
-char *beginString;
 
 int getWord(char *beginSearch, WordDescriptor *word) {
 
@@ -275,10 +270,6 @@ int areWordsEqual(WordDescriptor w1, WordDescriptor w2) {
 }
 
 
-typedef struct BagOfWords {
-    WordDescriptor words[MAX_N_WORDS_IN_STRING];
-    size_t size;
-} BagOfWords;
 
 void getBagOfWords(BagOfWords *bag, char *s) {
     char *_bag;
@@ -351,7 +342,7 @@ void reverseWords(char *s) {
     reverseWord(s, word);
 }
 
-char *printWordBeforeFirstWordWithA(char *s) {
+char *getWordBeforeFirstWordWithA(char *s) {
     size_t l = strlen(s);
     for (size_t i = 0; i < l; i++) {
         if (s[i] == 'a') {
@@ -379,7 +370,7 @@ int alternatingOfLastWord(BagOfWords s1, BagOfWords s2
 }
 
 
-int *IsSimilarWord(char *s) {
+    int *IsSimilarWord(char *s) {
     size_t l = strlen(s);
 
     for (size_t i = 0; i < l; i++) {
