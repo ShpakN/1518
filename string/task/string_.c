@@ -258,7 +258,7 @@ char replace(char *source, char *w1, char *w2) {
     copyIf(word1, word2, source, isalpha);
 }
 
-int areWordsEqual(WordDescriptor w1, WordDescriptor w2) {
+int areWordsEqual(char *w1, char *w2) {
     while (w1 != "\0" && w2 != "\0") {
 
         if (w1 < w2) {
@@ -387,11 +387,11 @@ int *IsSimilarSetWord(char *s) {
     size_t l = strlen(&k);
 
     for (size_t i = 0; i < l; i++) {
-        if (k[i] > k[i + 1]) {
-            k[i + 1] = k[i];
+        if (s[i] > s[i + 1]) {
+            s[i + 1] = s[i];
         }
 
-        if (k[i] == k[i + 1]) {
+        if (s[i] == s[i + 1]) {
             return (int *) 1;
         } else {
             return 0;
