@@ -169,7 +169,6 @@ void removeExtraSpaces(char *s) {
 }
 
 
-
 int getWord(char *beginSearch, WordDescriptor *word) {
 
     word->begin = findNonSpace(beginSearch);
@@ -270,7 +269,6 @@ int areWordsEqual(char *w1, char *w2) {
 }
 
 
-
 void getBagOfWords(BagOfWords *bag, char *s) {
     char *_bag;
     const char *_bag2;
@@ -343,9 +341,9 @@ void reverseWords(char *s) {
 }
 
 char *getWordBeforeFirstWordWithA(char *s) {
-    size_t l = strlen(s);
-    for (size_t i = 0; i < l; i++) {
-        if (s[i] == 'a') {
+    while (s != "\0") {
+
+        if (s == "a") {
             return s;
         } else {
             return 0;
@@ -370,28 +368,28 @@ int alternatingOfLastWord(BagOfWords s1, BagOfWords s2
 }
 
 
-    int *IsSimilarWord(char *s) {
-    size_t l = strlen(s);
-
-    for (size_t i = 0; i < l; i++) {
-        if (s[i] == s[i + 1]) {
+int *IsSimilarWord(char *s) {
+    char s1 = ' ';
+    while (s != "\0") {
+        if ((char) s == s1) {
             return (int *) 1;
         } else {
             return 0;
         }
+        char s1 = *s;
     }
 }
 
 int *IsSimilarSetWord(char *s) {
+    char s1 = ' ';
     char k = *copy(s, s, s);
-    size_t l = strlen(&k);
 
-    for (size_t i = 0; i < l; i++) {
-        if (s[i] > s[i + 1]) {
-            s[i + 1] = s[i];
+    while (s != "\0") {
+        if ((char) s > s1) {
+            s1 = *s;
         }
 
-        if (s[i] == s[i + 1]) {
+        if ((char) s == s1) {
             return (int *) 1;
         } else {
             return 0;
@@ -400,24 +398,22 @@ int *IsSimilarSetWord(char *s) {
 }
 
 char *printDiverseLastWord(char *s) {
-    size_t l = strlen(s);
+    char s1 = ' ';
 
-    for (size_t i = 0; i < l; i++) {
-        s[i] = s[i - 1];
-        if (s[i] != s[i + 1]) {
+    while (s != "\0") {
+        s1 = *s;
+        if ((char *) s1 != s) {
             return (char *) s;
         }
     }
 }
 
 char *printPrecedingFirstWord(char *s1, char *s2) {
-    size_t l1 = strlen(s1);
-    size_t l2 = strlen(s2);
 
-    for (size_t i = 0; i < l1; i++) {
-        for (size_t j = 0; i < l2; i++) {
-            if (s1[i] == s2[j]) {
-                char w = s1[i - 1];
+    while (s1 != "\0") {
+        while (s2 != "\0") {
+            if (s1 == s2) {
+                char w = *s1;
 
                 return (char *) w;
             }
@@ -436,60 +432,50 @@ void deleteSubstring(char *str, int start, int end) {
 
 void deleteDuplicateString(char *s) {
     bool k = false;
+    char s1 = ' ';
     char letters[256] = {0};
     int l = strlen(s);
-    for (int i = 0; i < l; i++) {
-        if (i == 0 || s[i] == ' ') {
-            if (k) {
-                deleteSubstring(s, i + 1, l);
+    while (s != "\0") {
+        {
+            if (s == ' ') {
+                if (k) {
+                    deleteSubstring((char *) s1, (int) s, l);
+                }
+                memset(letters, 0, sizeof(letters));
+                k = false;
+            } else {
+                if (letters[(unsigned char) s] == 1) {
+                    k = true;
+                }
+                letters[(unsigned char) s] = 1;
             }
-            l = i;
-            memset(letters, 0, sizeof(letters));
-            k = false;
-        } else {
-            if (letters[(unsigned char) s[i]] == 1) {
-                k = true;
-            }
-            letters[(unsigned char) s[i]] = 1;
         }
-    }
 
+    }
 }
 
 char *SmallerNumberOfargerNumberOfWords(char *n1, char *n2) {
-    int i = 0;
-    char *n3;
-    int j = 0;
-
-    size_t l1 = strlen(n1);
-    size_t l2 = strlen(n2);
-
-    while (i < strlen(n1)) {
+    char *n3 = NULL;
+    while (n1 != "\0") {
         strcpy(n1, "");
 
-        while (n1[i] != ' ' && i < strlen(n1)) {
-            strncat(n1, &n1[i], 1);
-            i++;
+        while (n1 != ' ') {
+            strncat(n1, &n1, 1);
         }
 
-        strcpy((char *) n3[j], n1);
-        j++;
-        i++;
+        strcpy(n3, n1);
     }
 
-    int k = j - 1;
 
-    for (i = k; i >= l2 - l1; i--) {
-        printf("%c ", n3[i]);
+    while (n3 != "\0") {
+        printf("%s ", n3);
     }
 }
 
-
 int IsStringeachLetterGivenWord(char *s, char w) {
-    size_t l = strlen(s);
     int k = 0;
-    for (int i = 0; i < l; i++) {
-        if (s[i] == w) {
+    while (s != "\0") {
+        if (s == w) {
             int k = 1;
         } else {
             int k = 0;
